@@ -1,1 +1,5 @@
 .DS_Store
+
+# compiled styling
+index.css
+index.css.map
