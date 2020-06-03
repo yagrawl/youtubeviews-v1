@@ -1,0 +1,37 @@
+.toggle {
+  .toggle-control {
+    transition: $toggle-transition;
+    width: $toggle-width;
+    height: $toggle-height;
+    display: block;
+    border-radius: $toggle-height;
+    background-color: $theme-complimentary-color;
+    position: relative;
+    &:after {
+      transition: $toggle-transition;
+      content: "";
+      width: $toggle-width/2;
+      height: $toggle-height;
+      display: block;
+      background-color: #fff;
+      border-radius: 50%;
+      box-shadow: 0 1px 2px rgba(black, .4),0 3px 2px rgba(black,.4);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  input {
+    display: none;
+    &:checked + .toggle-control {
+      border-color: $theme-color;
+      background-color: $theme-color;
+      &:after {
+        left: $toggle-width/2;
+      }
+    }
+  }
+
+  .toggle-input {}
+}
