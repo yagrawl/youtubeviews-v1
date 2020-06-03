@@ -1,0 +1,32 @@
+.body {
+  margin: auto;
+  padding: 20px;
+}
+
+table, td {
+  margin: auto;
+  border: 0px;
+  text-align: right;
+}
+
+table {
+  max-width: 50%;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr {
+  padding: 0;
+}
+
+td {
+  padding: 0 5px;
+}
+
+.labels {
+  text-align: left;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  @extend %font;
+}

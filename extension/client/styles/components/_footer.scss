@@ -1,0 +1,24 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  width: 100vw;
+}
+
+.footer-link-text {
+  display: inline-block;
+  @extend %font;
+  margin: auto 10px;
+  text-decoration: none;
+}
+
+a > .footer-link-text {
+  text-decoration: none;
+  color: $text-color;
+}
+
+a > .footer-link-text:hover {
+  color: $theme-color;
+}
