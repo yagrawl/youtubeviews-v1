@@ -6,10 +6,17 @@ class View {
   constructor() {
     this.app = this.getElement('#root');
 
-    this.title = this.createElement('h1');
-    this.title.textContent = 'YouTube Views';
+    this.header = this.createElement('div', 'header');
 
-    this.app.append(this.title);
+    this.logo = this.createElement('img', 'logo-image');
+    this.logo.src = '../assets/images/logo.png';
+
+    this.titleText = this.createElement('p', 'title-text');
+    this.titleText.textContent = 'Track your viewing activity on YouTube';
+
+    this.header.append(this.logo, this.titleText);
+
+    this.app.append(this.header);
   }
 
   createElement(tag, className) {

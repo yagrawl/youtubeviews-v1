@@ -1,4 +1,7 @@
-$background-color: #191919;
+@import 'base/variables';
+@import 'base/font';
+
+@import 'components/header';
 
 *,
 *::before,
@@ -9,12 +12,21 @@ $background-color: #191919;
 html {
   font-family: sans-serif;
   font-size: 1rem;
-  background: $background-color;
+  color: $text-color;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
+}
+
+a { text-decoration: none !important; }
+
 #root {
+  background: $background-color;
   width: 300px;
-  height: 200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  height: 250px;
+  margin: 0;
+  padding: 0;
 }
