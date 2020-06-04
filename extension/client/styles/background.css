@@ -1,0 +1,19 @@
+.views {
+  display: inline-block;
+}
+
+.logo {
+  display: inline-block;
+  padding: 0 3px;
+  max-width: 20px;
+}
+
+.view-count {
+  color: #D35759;
+  padding: 3px;
+}
+
+.dot {
+  color: #AAAAAA;
+  padding: 3px;
+}
