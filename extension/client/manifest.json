@@ -11,12 +11,12 @@
   "browser_action": {
     "default_popup": "popup.html"
   },
-  "permissions": ["storage", "tabs", "*://*.youtube.com/watch?v=*"],
+  "permissions": ["storage", "tabs"],
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/watch?v=*"],
-      "js": ["app/background.js"],
-      "css": ["styles/background.css"]
+      "js": ["app/client.js"],
+      "css": ["styles/client.css"]
     }
   ]
 }

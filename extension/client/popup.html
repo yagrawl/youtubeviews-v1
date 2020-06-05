@@ -5,7 +5,45 @@
     <link href="styles/index.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="header">
+        <img src="assets/images/logo.png" class="logo-image"/>
+        <p class="title-text">Track your viewing activity on YouTube</p>
+      </div>
+      <div class="body">
+        <table>
+          <tr>
+            <td><p class="labels">Record Activity</p></td>
+            <td>
+              <label class="toggle">
+                <input class="toggle-input" type="checkbox" checked id="recordActivityToggle"/>
+                <div class="toggle-control"></div>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td><p class="labels">Hide Views</p></td>
+            <td>
+              <label class="toggle">
+                <input class="toggle-input" type="checkbox" id="hideViewsToggle"/>
+                <div class="toggle-control"></div>
+              </label>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="footer">
+        <a href="/about">
+          <p class="footer-link-text">About</p>
+        </a>
+        <a href="/privacy">
+          <p class="footer-link-text">Privacy Policy</p>
+        </a>
+        <a href="/help">
+          <p class="footer-link-text">Help</p>
+        </a>
+      </div>
+    </div>
     <script src="app/index.js"></script>
   </body>
 </html>
