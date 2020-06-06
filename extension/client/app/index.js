@@ -1,18 +1,19 @@
 let recordActivityToggle = document.getElementById("recordActivityToggle");
 let hideViewsToggle = document.getElementById("hideViewsToggle");
 
+localStorage.setItem("recordActivityToggle", "true");
+localStorage.setItem("hideViewsToggle", "false");
+
 recordActivityToggle.addEventListener("change", function() {
-  if(this.checked) {
-    console.log("updated to checked");
-  } else {
-    console.log("updated to unchecked");
-  }
+  localStorage.setItem("recordActivityToggle", this.checked);
+  console.log("%c Toggle ",
+          "color: white; background-color: #2274A5",
+          `recordActivityToggle: updated to ${this.checked}`);
 });
 
 hideViewsToggle.addEventListener("change", function() {
-  if(this.checked) {
-    console.log("updated to checked");
-  } else {
-    console.log("updated to unchecked");
-  }
+  localStorage.setItem("hideViewsToggle", this.checked);
+  console.log("%c Toggle ",
+          "color: white; background-color: #2274A5",
+          `hideViewsToggle: updated to ${this.checked}`);
 });
