@@ -11,7 +11,11 @@
   "browser_action": {
     "default_popup": "popup.html"
   },
-  "permissions": ["storage", "tabs"],
+  "background": {
+    "scripts": ["app/background.js"],
+    "persistent": true
+  },
+  "permissions": ["storage", "activeTab"],
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/watch?v=*"],
