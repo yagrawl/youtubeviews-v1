@@ -1,5 +1,6 @@
 console.log("%c Content ", "color: white; background-color: #FE5F55",
             `Content.js Initiated`);
+let views = '•';
 
 let showViews = () => {
   let counterDiv = document.getElementById('info-text');
@@ -13,7 +14,7 @@ let showViews = () => {
 
   let viewCount = document.createElement('span');
   viewCount.classList.add('view-count');
-  viewCount.textContent = '# views';
+  viewCount.textContent = `${views} views`;
 
   let dot = document.createElement('span');
   dot.classList.add('dot');
@@ -41,6 +42,21 @@ chrome.storage.sync.get(['hide_views'], result => {
   }
 });
 
+let storeData = () => {
+  let videoId = location.href.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
+
+  if(videoId !== null) {
+    console.log('videoId: ', videoId);
+    let videoIdKey = `youtubeviews:${videoId}`;
+    chrome.storage.local.set({[ videoIdKey ]: 1}, () => {
+      chrome.storage.local.get([ videoIdKey ], result => {
+        console.log('RESULT: ', result);
+        console.log('COUNT: ', result[videoIdKey]);
+      })
+    });
+  }
+}
+
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area == "sync" && "hide_views" in changes) {
     if(changes.hide_views.newValue) {
@@ -54,3 +70,5 @@ chrome.storage.onChanged.addListener((changes, area) => {
     }
   }
 });
+
+storeData();

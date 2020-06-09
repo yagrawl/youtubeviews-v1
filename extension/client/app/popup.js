@@ -27,4 +27,8 @@ hideViewsToggle.addEventListener("change", function() {
     console.log("%c Toggle ", "color: white; background-color: #2274A5",
                 `Hide Views Toggle updated`);
   });
+
+  chrome.storage.local.get(null, items => {
+    console.log(items);
+  });
 });
