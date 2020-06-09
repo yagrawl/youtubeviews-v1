@@ -19,8 +19,8 @@
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/watch?v=*"],
-      "js": ["app/client.js"],
-      "css": ["styles/client.css"]
+      "js": ["app/content.js"],
+      "css": ["styles/content.css"]
     }
   ]
 }
