@@ -14,7 +14,7 @@ let showViews = () => {
 
   let viewCount = document.createElement('span');
   viewCount.classList.add('view-count');
-  viewCount.textContent = `${views} views`;
+  viewCount.textContent = `${views} view${(views == 1) ? '' : 's'}`;
 
   let dot = document.createElement('span');
   dot.classList.add('dot');
@@ -47,17 +47,16 @@ let storeData = () => {
 
   if(videoId !== null) {
     console.log('videoId: ', videoId);
-    let videoIdKey = `youtubeviews:${videoId}`;
 
-    chrome.storage.local.get([ videoIdKey ], result => {
-      if(result[videoIdKey] === undefined) {
-        chrome.storage.local.set({ [ videoIdKey ]: 1 });
+    chrome.storage.local.get([ videoId ], result => {
+      if(result[videoId] === undefined) {
+        chrome.storage.local.set({ [ videoId ]: 1 });
         views = 1;
         hideViews();
         showViews();
       } else {
-        views = result[videoIdKey] + 1;
-        chrome.storage.local.set({ [ videoIdKey ]: views });
+        views = result[videoId] + 1;
+        chrome.storage.local.set({ [ videoId ]: views });
         hideViews();
         showViews();
       }
