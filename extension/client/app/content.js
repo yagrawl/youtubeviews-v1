@@ -48,11 +48,19 @@ let storeData = () => {
   if(videoId !== null) {
     console.log('videoId: ', videoId);
     let videoIdKey = `youtubeviews:${videoId}`;
-    chrome.storage.local.set({[ videoIdKey ]: 1}, () => {
-      chrome.storage.local.get([ videoIdKey ], result => {
-        console.log('RESULT: ', result);
-        console.log('COUNT: ', result[videoIdKey]);
-      })
+
+    chrome.storage.local.get([ videoIdKey ], result => {
+      if(result[videoIdKey] === undefined) {
+        chrome.storage.local.set({ [ videoIdKey ]: 1 });
+        views = 1;
+        hideViews();
+        showViews();
+      } else {
+        views = result[videoIdKey] + 1;
+        chrome.storage.local.set({ [ videoIdKey ]: views });
+        hideViews();
+        showViews();
+      }
     });
   }
 }
