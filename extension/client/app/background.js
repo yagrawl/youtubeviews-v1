@@ -15,19 +15,22 @@ chrome.runtime.onInstalled.addListener(function() {
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(tab.status === "complete" && changeInfo.status === "complete") {
-    let videoId = tab.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
+    let url = tab.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
 
-    if(videoId !== null) {
+    if(url !== null) {
+      let videoId = url[1];
       console.log("%c videoId ", "color: white; background-color: #D7AF70",
                 videoId);
 
       chrome.storage.local.get([ videoId ], result => {
         if(Object.keys(result).length === 0 && result.constructor === Object) {
           chrome.storage.local.set({ [ videoId ]: 1 });
+          chrome.tabs.sendMessage(tab.id, { view: { id: videoId, count: 1 }});
           console.log("%c Views ", "color: white; background-color: #F56960", 1);
         } else {
           let views = result[videoId] + 1;
           chrome.storage.local.set({ [ videoId ]: views });
+          chrome.tabs.sendMessage(tab.id, { view: { id: videoId, count: views }});
           console.log("%c Views ", "color: white; background-color: #F56960", views);
         }
       });

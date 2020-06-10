@@ -55,3 +55,11 @@ chrome.storage.onChanged.addListener((changes, area) => {
     }
   }
 });
+
+chrome.runtime.onMessage.addListener(message => {
+  console.log("%c Request ", "color: white; background-color: #FE5F55",
+              message);
+  views = message.view.count;
+  hideViews();
+  showViews();
+});
