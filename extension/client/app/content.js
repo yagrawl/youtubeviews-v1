@@ -28,18 +28,21 @@ let hideViews = () => {
   let counterDiv = document.getElementById('info-text');
   let myViews = document.getElementById('youtubeviews-ui');
 
-  counterDiv.removeChild(myViews);
+  if(myViews !== null) {
+    counterDiv.removeChild(myViews);
+  }
 }
 
-chrome.storage.sync.get(['hide_views'], result => {
-  if(!result.hide_views) {
-    console.log("%c Content ", "color: white; background-color: #FE5F55",
-                `Hide Views toggle set to false. Showing Views.`);
-    showViews();
-  } else {
-    console.log("%c Content ", "color: white; background-color: #FE5F55",
-                `Hide Views toggle set to true. Hiding Views.`);
-  }
+chrome.runtime.onMessage.addListener(message => {
+  console.log("%c Message ", "color: white; background-color: #FE5F55",
+              message);
+  views = message.view.count;
+  chrome.storage.sync.get(['hide_views'], result => {
+    if(!result.hide_views) {
+      hideViews();
+      showViews();
+    }
+  });
 });
 
 chrome.storage.onChanged.addListener((changes, area) => {
@@ -54,12 +57,4 @@ chrome.storage.onChanged.addListener((changes, area) => {
       showViews();
     }
   }
-});
-
-chrome.runtime.onMessage.addListener(message => {
-  console.log("%c Request ", "color: white; background-color: #FE5F55",
-              message);
-  views = message.view.count;
-  hideViews();
-  showViews();
 });
