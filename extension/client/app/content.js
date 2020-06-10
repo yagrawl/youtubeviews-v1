@@ -42,28 +42,6 @@ chrome.storage.sync.get(['hide_views'], result => {
   }
 });
 
-let storeData = () => {
-  let videoId = location.href.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)[1];
-
-  if(videoId !== null) {
-    console.log('videoId: ', videoId);
-
-    chrome.storage.local.get([ videoId ], result => {
-      if(result[videoId] === undefined) {
-        chrome.storage.local.set({ [ videoId ]: 1 });
-        views = 1;
-        hideViews();
-        showViews();
-      } else {
-        views = result[videoId] + 1;
-        chrome.storage.local.set({ [ videoId ]: views });
-        hideViews();
-        showViews();
-      }
-    });
-  }
-}
-
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area == "sync" && "hide_views" in changes) {
     if(changes.hide_views.newValue) {
@@ -77,5 +55,3 @@ chrome.storage.onChanged.addListener((changes, area) => {
     }
   }
 });
-
-storeData();

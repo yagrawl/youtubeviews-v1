@@ -12,3 +12,23 @@ chrome.runtime.onInstalled.addListener(function() {
                 `Hide Views Toggle set to false`);
   });
 });
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+  if(tab.status === "complete" && changeInfo.status === "complete") {
+    let videoId = tab.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+
+    if(videoId !== null) {
+      console.log("%c videoId ", "color: white; background-color: #D7AF70",
+                videoId);
+
+      chrome.storage.local.get([ videoId ], result => {
+        if(result[videoId] === undefined) {
+          chrome.storage.local.set({ [ videoId ]: 1 });
+        } else {
+          let views = result[videoId] + 1;
+          chrome.storage.local.set({ [ videoId ]: views });
+        }
+      });
+    }
+  }
+});
