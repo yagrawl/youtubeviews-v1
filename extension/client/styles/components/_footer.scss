@@ -14,11 +14,19 @@
   text-decoration: none;
 }
 
-a > .footer-link-text {
-  text-decoration: none;
+.footer-button {
+  padding: 2px 4px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
   color: $text-color;
 }
 
-a > .footer-link-text:hover {
+.footer-button:hover {
+  background-color: $header-background-color;
+  border-radius: 3px;
   color: $theme-color;
 }

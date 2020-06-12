@@ -28,6 +28,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(RECORD_ACTIVITY) {
+    console.log(tab);
     if(tab.status === "complete" && changeInfo.status === "complete") {
       let url = tab.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
 

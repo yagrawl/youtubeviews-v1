@@ -1,0 +1,42 @@
+.title {
+  text-align: center;
+  @extend %font;
+}
+
+#stats {
+  background: $background-color;
+  margin: 0;
+  padding: 0;
+}
+
+#data {
+  padding: 30px;
+}
+
+table.stats-table {
+  max-width: 30%;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td.stats-row {
+  padding: 10px;
+}
+
+p.count {
+  @extend %font;
+  font-size: 48px;
+  color: $theme-color;
+}
+
+.thumbnail {
+  border-radius: 20px;
+  width: 256px;
+  height: 144px;
+  display: block;
+}
+
+.thumbnail:hover {
+  background: $theme-color;
+  opacity: 0.5;
+}

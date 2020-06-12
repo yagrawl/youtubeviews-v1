@@ -1,6 +1,10 @@
 let recordActivityToggle = document.getElementById("recordActivityToggle");
 let hideViewsToggle = document.getElementById("hideViewsToggle");
 
+let statsButton = document.getElementById("statsButton");
+let privacyButton = document.getElementById("privacyButton");
+let helpButton = document.getElementById("helpButton");
+
 chrome.storage.sync.get(['record_activity'], result => {
   recordActivityToggle.checked = result.record_activity;
   console.log("%c Toggle ",
@@ -31,4 +35,8 @@ hideViewsToggle.addEventListener("change", function() {
   chrome.storage.local.get(null, items => {
     console.log(items);
   });
+});
+
+statsButton.addEventListener("click", () => {
+  chrome.tabs.create({url: '../stats.html'}); 
 });
