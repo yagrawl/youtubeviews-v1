@@ -30,3 +30,10 @@ td {
   white-space: nowrap;
   @extend %font;
 }
+
+.hr {
+  height: 0.5px;
+  border: none;
+  color: $separator-color;
+  background-color: $separator-color;
+}

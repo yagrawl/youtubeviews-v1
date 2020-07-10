@@ -15,10 +15,10 @@
     "scripts": ["app/background.js"],
     "persistent": true
   },
-  "permissions": ["*://*.youtube.com/watch?v=*", "storage", "tabs"],
+  "permissions": ["storage", "tabs", "activeTab"],
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/watch?v=*"],
+      "matches": ["*://*.youtube.com/*"],
       "js": ["app/content.js"],
       "css": ["styles/content.css"]
     }

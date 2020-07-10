@@ -28,7 +28,6 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(RECORD_ACTIVITY) {
-    console.log(tab);
     if(tab.status === "complete" && changeInfo.status === "complete") {
       let url = tab.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
 
@@ -41,11 +40,13 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
             if(Object.keys(result).length === 0 && result.constructor === Object) {
               chrome.storage.local.set({ [ videoId ]: 1 });
               chrome.tabs.sendMessage(tab.id, { view: { id: videoId, count: 1 }});
+
               console.log(`${time()} %c Views `, "color: white; background-color: #F56960", `${1}`);
             } else {
               let views = result[videoId] + 1;
               chrome.storage.local.set({ [ videoId ]: views });
               chrome.tabs.sendMessage(tab.id, { view: { id: videoId, count: views }});
+
               console.log(`${time()} %c Views `, "color: white; background-color: #F56960", `${views}`);
             }
           });

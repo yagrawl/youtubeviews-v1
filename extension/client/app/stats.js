@@ -2,14 +2,15 @@ let dataDiv = document.getElementById("data");
 
 chrome.storage.local.get(null, items => {
   let table = createElement('table', 'stats-table');
+  let data = calculateData(items);
+  let topTen = data.topTenVideos;
 
-  for (video in items) {
-    let row = getRow(video, items[video]);
+  for(let i = 0; i < topTen.length; i++) {
+    let row = getRow(topTen[i][0], topTen[i][1]);
     table.append(row);
   }
 
   dataDiv.append(table);
-  console.log(items);
 });
 
 let getRow = (videoId, count) => {
@@ -28,6 +29,28 @@ let getRow = (videoId, count) => {
   row.append(countDiv);
 
   return row;
+}
+
+let calculateData = items => {
+  let data = {};
+  data.numberOfVideos = 0;
+  data.numberOfViews = 0;
+  data.topTenVideos = [];
+
+  let videos = Object.keys(items).map( key => [key, items[key]] );
+
+  videos.sort((first, second) => {
+    return second[1] - first[1];
+  });
+
+  data.topTenVideos = videos.slice(0, 10);
+
+  for(video in items) {
+    data.numberOfVideos += 1;
+    data.numberOfViews += items[video];
+  }
+
+  return data;
 }
 
 let getThumbnail = videoId => {
