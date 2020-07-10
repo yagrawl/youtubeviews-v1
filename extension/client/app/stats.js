@@ -2,15 +2,13 @@ let slideIndex = 1;
 
 export function getStats(statsDetails) {
   chrome.storage.local.get(null, items => {
-    if(items.length === 0) {
+    if(items.length <= 5) {
       let message = createElement('p', 'no-stats-message');
       message.textContent = 'Stats will be loaded as you watch videos on YouTube';
 
       statsDetails.append(message);
       return;
     }
-
-    console.log(items);
 
     let data = calculateData(items);
     let countsDiv = createElement('div', 'stats-counts-div');
@@ -33,31 +31,18 @@ export function getStats(statsDetails) {
     nextButton.innerHTML = '&#10095;';
     nextButton.onclick = function(){ plusSlides(1) };
 
+    let dots = createElement('div', 'dots');
+
     for(let i = 0; i < topVideos.length; i++) {
       let videoDiv = getTopVideoDiv(topVideos[i][0], topVideos[i][1]);
+      let dot = getDots(i);
+
       carouselContainer.append(videoDiv);
+      dots.append(dot);
     }
 
     carouselContainer.append(prevButton);
     carouselContainer.append(nextButton);
-
-    let dots = createElement('div', 'dots');
-    let dot1 = createElement('span', 'dot');
-    dot1.onclick = function(){ currentSlide(1) };
-    let dot2 = createElement('span', 'dot');
-    dot2.onclick = function(){ currentSlide(2) };
-    let dot3 = createElement('span', 'dot');
-    dot3.onclick = function(){ currentSlide(3) };
-    let dot4 = createElement('span', 'dot');
-    dot4.onclick = function(){ currentSlide(4) };
-    let dot5 = createElement('span', 'dot');
-    dot5.onclick = function(){ currentSlide(5) };
-
-    dots.append(dot1);
-    dots.append(dot2);
-    dots.append(dot3);
-    dots.append(dot4);
-    dots.append(dot5);
 
     statsDetails.append(countsDiv);
     statsDetails.append(carouselContainer);
@@ -113,6 +98,13 @@ let getThumbnail = videoId => {
 
   link.append(thumbnail);
   return link;
+}
+
+let getDots = number => {
+  let dot = createElement('span', 'dot');
+  dot.onclick = function(){ currentSlide(number) };
+
+  return dot;
 }
 
 let plusSlides = n => {
