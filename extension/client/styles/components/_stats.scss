@@ -8,17 +8,25 @@
 }
 
 .stats-title {
-  background-color: $header-background-color;
-  border-radius: 6px;
-  padding: 4px 16px;
   @extend %font;
   font-size: 14px;
   color: $theme-color;
 }
 
-.no-stats-message {
+.no-stats-message, .counts-label, .count {
   @extend %font;
   text-align: center;
+}
+
+.counts-label {
+  background-color: $separator-color;
+  padding: 5px 20px;
+  border-radius: 5px;
+}
+
+.count {
+  color: $theme-color;
+  font-weight: 600;
 }
 
 .youtube-link {
@@ -92,6 +100,14 @@
   to {opacity: 1}
 }
 
+p.top-videos-title {
+  @extend %font;
+  position: absolute;
+  top: 0%;
+  left: 4%;
+  font-size: 10px;
+}
+
 p.count {
   @extend %font;
   position: absolute;
@@ -102,9 +118,9 @@ p.count {
   font-size: 12px;
   font-weight: 600;
   color: $theme-color;
-  background-color: $theme-complimentary-color;
-  padding: 5px 10px;
-  border-radius: 20px;
+  background-color: $separator-color;
+  padding: 5px 20px;
+  border-radius: 5px;
 }
 
 .thumbnail {

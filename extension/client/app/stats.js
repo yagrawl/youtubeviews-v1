@@ -23,17 +23,26 @@ export function getStats(statsDetails) {
 
     let data = calculateData(items);
     let countsDiv = createElement('div', 'stats-counts-div');
-    let numberOfVideos = createElement('p', 'no-stats-message');
-    let numberOfViews = createElement('p', 'no-stats-message');
+    let numberOfVideos = createElement('p', 'counts-label');
+    let numberOfViews = createElement('p', 'counts-label');
+    let numberOfVideosCount = createElement('span', 'count');
+    let numberOfViewsCount = createElement('span', 'count');
 
-    numberOfVideos.textContent = `Videos ${data.numberOfVideos}`;
-    numberOfViews.textContent = `Views ${data.numberOfViews}`;
+    numberOfVideos.textContent = 'Videos ';
+    numberOfViews.textContent = 'Views ';
 
+    numberOfVideosCount.textContent = data.numberOfVideos;
+    numberOfViewsCount.textContent = data.numberOfViews;
+
+    numberOfVideos.append(numberOfVideosCount);
+    numberOfViews.append(numberOfViewsCount);
     countsDiv.append(numberOfVideos);
     countsDiv.append(numberOfViews);
 
     let topVideos = data.topVideos;
     let carouselContainer = createElement('div', 'carousel-container');
+    let topVideosTitle = createElement('p', 'top-videos-title');
+    topVideosTitle.textContent = 'Most Viewed Videos';
 
     let prevButton = createElement('a', 'prev');
     prevButton.innerHTML = '&#10094;';
@@ -52,6 +61,7 @@ export function getStats(statsDetails) {
       dots.append(dot);
     }
 
+    carouselContainer.append(topVideosTitle);
     carouselContainer.append(prevButton);
     carouselContainer.append(nextButton);
 
