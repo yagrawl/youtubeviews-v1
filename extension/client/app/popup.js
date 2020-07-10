@@ -62,12 +62,18 @@ chrome.storage.local.get(null, items => {
   let topVideos = data.topVideos;
   let carouselContainer = createElement('div', 'carousel-container');
 
-  let prevButton = createElement('button');
-  prevButton.textContent = 'prev';
+  let prevButton = createElement('a', 'prev');
+  prevButton.innerHTML = '&#10094;';
   prevButton.onclick = function(){ plusSlides(-1) };
-  let nextButton = createElement('button');
-  nextButton.textContent = 'next';
+  let nextButton = createElement('a', 'next');
+  nextButton.innerHTML = '&#10095;';
   nextButton.onclick = function(){ plusSlides(1) };
+
+//   <div style="text-align:center">
+//   <span class="dot" onclick="currentSlide(1)"></span>
+//   <span class="dot" onclick="currentSlide(2)"></span>
+//   <span class="dot" onclick="currentSlide(3)"></span>
+// </div>
 
   for(let i = 0; i < topVideos.length; i++) {
     let videoDiv = getTopVideoDiv(topVideos[i][0], topVideos[i][1]);
@@ -77,8 +83,27 @@ chrome.storage.local.get(null, items => {
   carouselContainer.append(prevButton);
   carouselContainer.append(nextButton);
 
+  let dots = createElement('div', 'dots');
+  let dot1 = createElement('span', 'dot');
+  dot1.onclick = function(){ currentSlide(1) };
+  let dot2 = createElement('span', 'dot');
+  dot2.onclick = function(){ currentSlide(2) };
+  let dot3 = createElement('span', 'dot');
+  dot3.onclick = function(){ currentSlide(3) };
+  let dot4 = createElement('span', 'dot');
+  dot4.onclick = function(){ currentSlide(4) };
+  let dot5 = createElement('span', 'dot');
+  dot5.onclick = function(){ currentSlide(5) };
+
+  dots.append(dot1);
+  dots.append(dot2);
+  dots.append(dot3);
+  dots.append(dot4);
+  dots.append(dot5);
+
   statsDetails.append(countsDiv);
   statsDetails.append(carouselContainer);
+  statsDetails.append(dots);
 
   showSlide(1);
 });
@@ -133,17 +158,28 @@ let plusSlides = n => {
   showSlide(slideIndex += n);
 }
 
+let currentSlide = n => {
+  showSlide(slideIndex = n);
+}
+
 let showSlide = n => {
   let i;
   let slides = document.getElementsByClassName("carousel-content");
+  let dots = document.getElementsByClassName("dot");
+
   if (n > slides.length) { slideIndex = 1 }
   if (n < 1) { slideIndex = slides.length }
 
   for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
+    slides[i].style.display = "none";
+  }
+
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
   }
 
   slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
 }
 
 let createElement = (tag, className) => {
