@@ -2,7 +2,7 @@ let slideIndex = 1;
 
 export function getStats(statsDetails) {
   chrome.storage.local.get(null, items => {
-    if(Object.keys(items).length <= 5) {
+    if(Object.keys(items).length < 5) {
       let message = createElement('p', 'no-stats-message');
       message.textContent = 'Stats will be loaded as you watch videos on YouTube.';
 
