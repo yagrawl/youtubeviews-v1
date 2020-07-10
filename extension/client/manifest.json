@@ -15,7 +15,7 @@
     "scripts": ["app/background.js"],
     "persistent": true
   },
-  "permissions": ["storage", "tabs", "activeTab"],
+  "permissions": ["storage", "tabs"],
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
