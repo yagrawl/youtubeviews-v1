@@ -2,10 +2,7 @@ import { getStats } from './stats.js';
 
 let recordActivityToggle = document.getElementById("recordActivityToggle");
 let hideViewsToggle = document.getElementById("hideViewsToggle");
-
 let statsDetails = document.getElementById("statsDetails");
-let privacyButton = document.getElementById("privacyButton");
-let helpButton = document.getElementById("helpButton");
 
 chrome.storage.sync.get(['record_activity'], result => {
   recordActivityToggle.checked = result.record_activity;

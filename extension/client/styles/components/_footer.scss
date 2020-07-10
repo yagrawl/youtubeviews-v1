@@ -14,7 +14,7 @@
   text-decoration: none;
 }
 
-.footer-button {
+.footer-link {
   padding: 2px 4px;
   background-color: Transparent;
   background-repeat:no-repeat;
@@ -25,7 +25,7 @@
   color: $text-color;
 }
 
-.footer-button:hover {
+.footer-link:hover {
   background-color: $header-background-color;
   border-radius: 3px;
   color: $theme-color;
