@@ -2,11 +2,22 @@ let slideIndex = 1;
 
 export function getStats(statsDetails) {
   chrome.storage.local.get(null, items => {
-    if(items.length <= 5) {
+    if(Object.keys(items).length <= 5) {
       let message = createElement('p', 'no-stats-message');
-      message.textContent = 'Stats will be loaded as you watch videos on YouTube';
+      message.textContent = 'Stats will be loaded as you watch videos on YouTube.';
+
+      let youtubeLink = createElement('a', 'youtube-link');
+      youtubeLink.href = 'https://youtube.com';
+      youtubeLink.target = '_blank';
+
+      let youtube = createElement('img', 'youtube-logo');
+      youtube.src = "../assets/images/youtube_icon.png";
+
+      youtubeLink.append(youtube)
 
       statsDetails.append(message);
+      statsDetails.append(youtubeLink);
+
       return;
     }
 

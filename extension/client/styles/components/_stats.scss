@@ -21,6 +21,20 @@
   text-align: center;
 }
 
+.youtube-link {
+  position: relative;
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.youtube-logo {
+  position: absolute;
+  max-width: 100px;
+  left: 50%;
+  margin-left: -50px;
+}
+
 .stats-counts-div {
   display: flex;
   justify-content: space-evenly;
